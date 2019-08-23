@@ -3,7 +3,7 @@
 *.log
 *.log.*
 *.ini
-
+*.lock
 .DS_Store
 .env
 .pycharmrc
