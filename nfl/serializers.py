@@ -19,7 +19,7 @@ class DjangoUsersSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username', 'password', 'first_name', 'last_name', 'email']
+        fields = ['username', 'first_name', 'last_name', 'email']
 
 class DjangoUserWithTokenSerializer(serializers.ModelSerializer):
 
@@ -35,8 +35,8 @@ class DjangoUserWithTokenSerializer(serializers.ModelSerializer):
         token = jwt_encode_handler(payload)
         return token
 
-    def create(self, vaildate_data):
-        password = vaildate_data.pop('password', None)
+    def create(self, validated_data):
+        password = validated_data.pop('password', None)
         instance = self.Meta.model(**validated_data)
 
         if password is not None:

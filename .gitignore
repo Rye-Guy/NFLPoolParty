@@ -8,6 +8,7 @@
 .env
 .pycharmrc
 nginx.conf
+package-lock.json
 .idea/
 media/
 static/
@@ -15,4 +16,4 @@ static/
 cache/
 dist/
 node_modules/
-
+public/
