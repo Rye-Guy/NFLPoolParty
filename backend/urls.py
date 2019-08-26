@@ -15,21 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import routers
 from rest_framework_jwt.views import obtain_jwt_token
-from nfl.views import DjangoUserViewSet, UserPicksViewSet, NFLGameViewSet, current_user, UserList
-
-router = routers.DefaultRouter()
-router.register(r'django-users', DjangoUserViewSet)
-router.register(r'games', NFLGameViewSet)
-router.register(r'picks', UserPicksViewSet)
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls)),
     path('token-auth/', obtain_jwt_token),
-    path('current-user/', current_user),
-    path('users/', UserList.as_view()),
-    path(r'api/', include('rest_framework.urls'))
+    path('nfl/', include('nfl.urls'))
 ]
+

@@ -9,6 +9,7 @@ class GamesSerializer(serializers.ModelSerializer):
     class Meta:
         model = NFLGame
         fields = ['team_1', 'team_2', 'winner', 'date', 'week', 'team_1_logo', 'team_2_logo']
+        
 class UserPicksSerializer(serializers.ModelSerializer):
     
     class Meta:
@@ -19,7 +20,7 @@ class DjangoUsersSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email']
+        fields = ['username',]
 
 class DjangoUserWithTokenSerializer(serializers.ModelSerializer):
 

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SignInForms from './SignInForms'
-
+import CurrentGames from './CurrentGames';
 class Home extends Component{
     
     displayGamesOrSignIn = () =>{
         if(this.props.token){
             return (
                 <div>
-                    <h2>This weeks games</h2>
+                    <CurrentGames></CurrentGames>
                 </div>
             )
         }else{

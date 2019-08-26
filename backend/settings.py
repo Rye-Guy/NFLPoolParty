@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
+import datetime
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -37,10 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'nfl',
     'import_export',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'nfl',
+
 ]
 
 MIDDLEWARE = [
@@ -57,9 +58,6 @@ MIDDLEWARE = [
 CORS_ORIGIN_WHITELIST = ['http://localhost:3000', 'http://localhost:3002']
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
@@ -68,7 +66,10 @@ REST_FRAMEWORK = {
 }
 
 JWT_AUTH = {
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'nfl.utils.jwt_response_handler'
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'nfl.utils.jwt_response_handler',
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=1)
 }
 
 ROOT_URLCONF = 'backend.urls'
