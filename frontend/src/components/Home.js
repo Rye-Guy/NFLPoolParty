@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SignInForms from './SignInForms'
+
 class Home extends Component{
-
-    componentDidMount = () =>{
-        console.log(console.log(this.props))
-    }
-
+    
     displayGamesOrSignIn = () =>{
-        if(this.props.isSignedIn){
+        if(this.props.token){
             return (
                 <div>
                     <h2>This weeks games</h2>
@@ -23,7 +20,6 @@ class Home extends Component{
     render(){
         return(
             <div>
-                <h1>Welcome</h1>
                 {this.displayGamesOrSignIn()}
             </div>
         )
@@ -32,7 +28,7 @@ class Home extends Component{
 
 const mapStateToProps = (state) =>{
     return {
-      isSignedIn: state.authReducer.isSignedIn,
+      token: state.authReducer.hasToken,
       user: state.authReducer.userInfo
     }
 }

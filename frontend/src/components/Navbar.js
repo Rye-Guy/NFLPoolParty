@@ -4,7 +4,7 @@ import DjangoAuth from './DjangoAuth';
 
 class Navbar extends Component{
 
-    renderNav = (isSignedIn = false) => {
+    renderNav = (isSignedIn) => {
         if(isSignedIn){
             return(
                 <div className="ui secondary pointing menu">
@@ -32,7 +32,7 @@ class Navbar extends Component{
     render(){
         return(
             <div>
-                {this.renderNav()}
+                {this.renderNav(this.props.isSignedIn)}
             </div>
         );   
     }

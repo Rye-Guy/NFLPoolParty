@@ -1,26 +1,18 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { signIn, signOut } from '../actions';
+import { signOut } from '../actions';
 
 class DjangoAuth extends Component{
     
-    onSignInClick = () =>{
-        console.log('something')
-        const formData = {username: 'admin', password: 'xultophy99'}
-        this.props.signIn(formData)
-    }
-
     onSignOutClick = () =>{
         this.props.signOut();
     }
     
     renderAuthButton(){
-        if(this.props.isSignedIn === null){
-            return null
-        }else if(this.props.isSignedIn){
+        if(this.props.token){
             return <button onClick={()=>this.onSignOutClick()} className='ui red button'>Sign Out</button>
         }else{
-            return <button onClick={()=>this.onSignInClick()} className='ui green button'>Sign In</button>
+            return null
         }
     }
 
@@ -30,7 +22,11 @@ class DjangoAuth extends Component{
 }
 
 const mapStateToProps = (state) =>{
-    return {isSignedIn: state.authReducer.isSignedIn}
+    return {
+            isSignedIn: state.authReducer.isSignedIn,
+            token: state.authReducer.hasToken,
+            resData: state.authReducer.resData
+    }
 }
 
-export default connect(mapStateToProps, {signIn, signOut})(DjangoAuth)
+export default connect(mapStateToProps, {signOut})(DjangoAuth)

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {SIGN_IN, SIGN_OUT} from './types'
+import {SIGN_IN, SIGN_OUT, SIGN_UP} from './types'
 
 export const signIn = (formData) => async (dispatch) => {
     const response = await axios({
@@ -12,6 +12,8 @@ export const signIn = (formData) => async (dispatch) => {
         .then((res)=>{
             localStorage.setItem('token', res.data.token);
             return res.data
+        }).catch((err)=>{
+            return err.response
         })
 
     dispatch({
@@ -19,6 +21,28 @@ export const signIn = (formData) => async (dispatch) => {
         payload: response
     })
 }
+
+export const signUp = (formData) => async (dispatch) =>{
+    const response = await axios({
+        method: 'post',
+        url: 'http://localhost:8888/users/', 
+        data: {
+            "username": formData.createusername,
+            "password": formData.createpassword,
+        },})
+        .then((res)=>{
+            localStorage.setItem('token', res.data.token);
+            return res.data
+        }).catch((err)=>{
+            return err.response
+        })
+
+    dispatch({
+        type: SIGN_UP,
+        payload: response
+    })
+}
+
 
 export const signOut = () => {
     localStorage.removeItem('token');
