@@ -10,11 +10,25 @@ class CurrentGames extends Component{
     renderGamesList(){
         return this.props.games.map((game)=>{
             return(
-                <tr>
-                    <td data-label="Team 1">{game.team_1}</td>
-                    <td data-label="Team 2">{game.team_2}</td>
-                    <td data-label="Date">{game.date}</td>
-                    <td data-label="Winner">{game.winner}</td>
+                <tr key={game.id}>
+                    <td data-label="Team 1">
+                        <div className="team-row">
+                            {game.team_1.team_name}
+                            <img className="team-row--logo" src={game.team_1.team_logo} alt={`${game.team_1.team_logo} Logo`}></img>
+                        </div>
+                    </td>
+                    <td data-label="Team 2">
+                        <div className="team-row">
+                            {game.team_2.team_name}
+                            <img className="team-row--logo" src={game.team_2.team_logo} alt={`${game.team_2.team_logo} Logo`}></img>
+                        </div>
+                    </td>
+                    <td data-label="Date">
+                        {game.date}
+                    </td>
+                    <td data-label="Winner">
+                        {game.winner}
+                    </td>
                 </tr>
             )
         })

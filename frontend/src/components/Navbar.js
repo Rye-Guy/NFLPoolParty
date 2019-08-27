@@ -1,21 +1,21 @@
 
 import React, { Component } from 'react';
 import DjangoAuth from './DjangoAuth';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Navbar extends Component{
 
-    renderNav = (isSignedIn) => {
-        if(isSignedIn){
+    renderNav = () => {
+        if(this.props.token){
             return(
                 <div className="ui secondary pointing menu">
-                    <a href="/" className="item">Home</a>
-                    <a href="/" className="item">Picks</a>
-                    <a href="/" className="item">All Games</a>
+                    <Link to="/" className="item">Home</Link>
+                    <Link to="/picks" className="item">Picks</Link>
+                    <a href="/" className="item">User Profile</a>
                     <a href="/" className="item">Standings</a>
                     <div className="right menu">
-                        <a href="/" className="item">
-                            Logout
-                        </a>
+                        <DjangoAuth></DjangoAuth>
                     </div>
                 </div>
             )
@@ -38,4 +38,10 @@ class Navbar extends Component{
     }
 }
 
-export default Navbar;
+const mapStateToProps = (state)=>{
+    return {
+        token: state.authReducer.hasToken
+    }
+}
+
+export default connect(mapStateToProps, )(Navbar)

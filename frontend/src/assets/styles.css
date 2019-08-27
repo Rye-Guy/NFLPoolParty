@@ -1,0 +1,18 @@
+.team-row{
+    display: flex;
+    align-items: center;
+}
+
+.team-row--logo{
+    width: 72px;
+    margin: 12px;
+}
+
+.ui.cards{
+    justify-content: space-between;
+    margin: 42px;
+}
+
+.ui.card:after, .ui.cards:after{
+    content: none;
+}

@@ -1,26 +1,29 @@
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.models import User
-from .models import NFLGame, UserPicks
+from .models import NFLGame, UserPicks, NFLTeam
 
 
+        
 class GamesSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = NFLGame
-        fields = ['team_1', 'team_2', 'winner', 'date', 'week', 'team_1_logo', 'team_2_logo']
+        depth = 1
+        fields = ['id', 'team_1', 'team_2', 'winner', 'week', 'date']
         
 class UserPicksSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = UserPicks
-        fields = ['user', 'week', 'team', 'point_awarded']
+        depth = 2
+        fields = ['user', 'games', 'teams', 'points_awarded']
 
 class DjangoUsersSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username',]
+        fields = ['username', 'password']
 
 class DjangoUserWithTokenSerializer(serializers.ModelSerializer):
 

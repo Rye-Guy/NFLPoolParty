@@ -25,7 +25,7 @@ export const signIn = (formData) => async (dispatch) => {
 export const signUp = (formData) => async (dispatch) =>{
     const response = await axios({
         method: 'post',
-        url: 'http://localhost:8888/users/', 
+        url: 'http://localhost:8888/nfl/users/', 
         data: {
             "username": formData.createusername,
             "password": formData.createpassword,
@@ -43,10 +43,17 @@ export const signUp = (formData) => async (dispatch) =>{
     })
 }
 
+export const signOut = () => {
+    localStorage.removeItem('token');
+    return {
+        type: SIGN_OUT
+    }
+}
+
 export const fetchGames = () => async (dispatch) =>{
     const response = await axios({
         method: 'get',
-        url: 'http://localhost:8888/nfl/games',
+        url: `http://localhost:8888/nfl/games/1`,
         headers: {
             Authorization: `JWT ${localStorage.getItem('token')}`
         },
@@ -61,23 +68,3 @@ export const fetchGames = () => async (dispatch) =>{
         payload: response
     })
 }
-
-
-export const signOut = () => {
-    localStorage.removeItem('token');
-    return {
-        type: SIGN_OUT
-    }
-}
-
-  // fetchGames = () =>{
-  //   axios.get('http://localhost:8888/games')
-  //   .then((res)=>{
-  //     this.setState({
-  //       nflGames: res.data,
-  //       isLoggedIn: false
-  //     }) 
-  //     console.log(res.data)
-  //   })
-  //   .catch((err)=>{console.log(err)})
-  // }
