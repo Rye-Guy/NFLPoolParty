@@ -12,7 +12,7 @@ class Navbar extends Component{
                 <div className="ui secondary pointing menu">
                     <Link to="/" className="item">Home</Link>
                     <Link to="/picks" className="item">Picks</Link>
-                    <a href="/" className="item">User Profile</a>
+                    <Link to="/user-profile" className="item">User Profile</Link>
                     <a href="/" className="item">Standings</a>
                     <div className="right menu">
                         <DjangoAuth></DjangoAuth>

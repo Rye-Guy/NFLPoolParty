@@ -37,7 +37,7 @@ class CurrentGames extends Component{
 
     render(){
         return(
-            <div>
+            <div className="margin-me">
                 <h2 className="ui header">This weeks games</h2>
                 <table className="ui celled table">
                     <thead>

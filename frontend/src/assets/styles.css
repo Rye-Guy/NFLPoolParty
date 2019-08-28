@@ -16,3 +16,27 @@
 .ui.card:after, .ui.cards:after{
     content: none;
 }
+
+.vs-logo-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.ui.mini.image{
+    width: 58px;
+}
+
+.match-up-header{
+    text-align: center;
+}
+
+.ui.placeholder.segment{
+    min-height: initial;
+    text-align: center;
+    margin: 48px;
+}
+
+.margin-me{
+    margin: 42px;
+}

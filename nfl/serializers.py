@@ -23,7 +23,7 @@ class DjangoUsersSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username', 'password']
+        fields = ['username']
 
 class DjangoUserWithTokenSerializer(serializers.ModelSerializer):
 

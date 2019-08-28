@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {SIGN_IN, SIGN_OUT, SIGN_UP, FETCH_GAMES} from './types'
+import {SIGN_IN, SIGN_OUT, SIGN_UP, FETCH_GAMES, SELECT_PICK, PATCH_USER_PICK, FETCH_USER_PROFILE} from './types'
 
 export const signIn = (formData) => async (dispatch) => {
     const response = await axios({
@@ -65,6 +65,55 @@ export const fetchGames = () => async (dispatch) =>{
 
     dispatch({
         type: FETCH_GAMES,
+        payload: response
+    })
+}
+
+export const selectPick = (gameObj, selectedTeamObj, losingTeamObj) => {
+    return {
+        type: SELECT_PICK,
+        payload: [gameObj, selectedTeamObj, losingTeamObj]
+    }
+}
+
+export const patchUserPick = (gameId, teamId) => async (dispatch) => {
+    const response = await axios({
+        method: 'PATCH',
+        url: `http://localhost:8888/nfl/current-user-picks/`,
+        data: {
+            game: gameId,
+            team: teamId
+        },
+        headers: {
+            Authorization: `JWT ${localStorage.getItem('token')}`
+        },
+    }).then((res)=>{
+        return res.data
+    }).catch((err)=>{
+        return err.response
+    })
+
+    return {
+        type: PATCH_USER_PICK,
+        payload: response.data
+    }
+}
+
+export const fetchUserProfile = () => async (dispatch) =>{
+    const response = await axios({
+        method: 'GET',
+        url: `http://localhost:8888/nfl/current-user-picks/`,
+        headers: {
+            Authorization: `JWT ${localStorage.getItem('token')}`
+        }
+    }).then((res)=>{
+        return res.data
+    }).catch((err)=>{
+        return err.response
+    })
+
+    dispatch({
+        type: FETCH_USER_PROFILE,
         payload: response
     })
 }
