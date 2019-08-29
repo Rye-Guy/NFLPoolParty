@@ -1,15 +1,28 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { fetchGames, selectPick, patchUserPick } from '../actions'
+import { fetchUserProfile, selectPick, patchUserPick, } from '../actions'
 
 class UserPicks extends Component{
-
+    
     selectUserPick = (game, pickedTeamId, teamToLose) =>{
         this.props.selectPick(game, pickedTeamId, teamToLose)
     }
 
     patchUserPick = (gameId, pickedTeamId) =>{
         this.props.patchUserPick(gameId, pickedTeamId)
+        this.props.fetchUserProfile()
+        
+    }
+
+
+    userHasPickedCurrentWeek = () =>{
+        if(this.props.currentUser){
+            if(this.props.currentUser.games.find(obj => obj.week === 1)){
+                return true
+            }else{
+                return false
+            }
+        }
     }
     
     renderGamesWithPickOptions = () =>{
@@ -31,8 +44,8 @@ class UserPicks extends Component{
                 </div>
                 <div className="extra content">
                     <div className="ui two buttons">
-                        <div onClick={()=>{this.selectUserPick(game, game.team_1, game.team_2)}} className="ui basic green button">{game.team_1.team_name}</div>
-                        <div onClick={()=>{this.selectUserPick(game, game.team_2, game.team_1)}} className="ui basic blue button">{game.team_2.team_name}</div>
+                        <div onClick={this.userHasPickedCurrentWeek() ? ()=>{console.log('you already have a pick')} : ()=>{this.selectUserPick(game, game.team_1, game.team_2)}} className={this.userHasPickedCurrentWeek() ? "ui basic gray button" : "ui basic green button" }>{game.team_1.team_name}</div>
+                        <div onClick={this.userHasPickedCurrentWeek() ? ()=>{console.log('you already have a pick')} : ()=>{this.selectUserPick(game, game.team_2, game.team_1)}} className={this.userHasPickedCurrentWeek() ? "ui basic gray button" : "ui basic blue button" }>{game.team_2.team_name}</div>
                     </div>
                 </div>
             </div>
@@ -41,7 +54,15 @@ class UserPicks extends Component{
     }
 
     renderCurrentPick = () =>{
-        if(this.props.currentPick){
+        if(this.userHasPickedCurrentWeek()){
+            return(
+                <div class="ui placeholder segment">
+                    <div class="ui header">
+                        You are have already selected a team to win this week. 
+                    </div>
+                </div>
+            )
+        }else if(this.props.currentPick){
             return(
                 <div class="ui placeholder segment">
                     <div class="ui header">
@@ -58,6 +79,7 @@ class UserPicks extends Component{
     render(){
         return(
             <div>
+                {this.userHasPickedCurrentWeek()}
                 {this.renderCurrentPick()}
                 <div className="ui cards">
                     {this.renderGamesWithPickOptions()}
@@ -70,8 +92,9 @@ class UserPicks extends Component{
 const mapStateToProps = (state) =>{
     return {
         games: state.gamesReducer.games,
-        currentPick: state.picksReducer.currentPick
+        currentPick: state.picksReducer.currentPick,
+        currentUser: state.picksReducer.userProfile
     }
 }
 
-export default connect(mapStateToProps, {fetchGames, selectPick, patchUserPick})(UserPicks)
+export default connect(mapStateToProps, {fetchUserProfile, selectPick, patchUserPick})(UserPicks)

@@ -93,10 +93,10 @@ export const patchUserPick = (gameId, teamId) => async (dispatch) => {
         return err.response
     })
 
-    return {
+    dispatch({
         type: PATCH_USER_PICK,
-        payload: response.data
-    }
+        payload: response
+    })
 }
 
 export const fetchUserProfile = () => async (dispatch) =>{

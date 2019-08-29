@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUserProfile } from '../actions'
 
 class UserProfile extends Component{
-    componentDidMount(){
-        this.props.fetchUserProfile()   
-    }
-
+ 
+    
     renderPickedTeams = () =>{
         return this.props.currentUser.teams.map((team)=>{
             return (
                 <div className="item">
-                    <img className="ui avatar image" src={team.team_logo}/>
+                    <img alt={`${team.team_name} Logo`} className="ui avatar image" src={team.team_logo}/>
                     <div className="content">
                         <div className="header">{team.team_name}</div>
                     </div>
@@ -20,7 +17,7 @@ class UserProfile extends Component{
         });
     }
 
-    renderUserGamesList(){
+    renderUserGamesList = () =>{
         return this.props.currentUser.games.map((game)=>{
             return(
                 <tr key={game.id}>
@@ -87,5 +84,5 @@ const mapStateToProps = (state) =>{
     }
 }
 
-export default connect(mapStateToProps, {fetchUserProfile})(UserProfile)
+export default connect(mapStateToProps, {})(UserProfile)
 

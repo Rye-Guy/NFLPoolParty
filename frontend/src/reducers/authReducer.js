@@ -13,7 +13,7 @@ export default (state = INITIAL_STATE, action) =>{
         case SIGN_IN:
             return {...state, hasToken: localStorage.hasOwnProperty('token'), response: action.payload};
         case SIGN_OUT:
-            return {...state, hasToken: localStorage.hasOwnProperty('token')};
+            return {...state, hasToken: localStorage.hasOwnProperty('token'), response: null};
         case SIGN_UP:
             return {...state, hasToken: localStorage.hasOwnProperty('token'), response: action.payload};
         default:
