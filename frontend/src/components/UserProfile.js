@@ -20,10 +20,29 @@ class UserProfile extends Component{
         });
     }
 
-    renderGamesTeams = () =>{
+    renderUserGamesList(){
         return this.props.currentUser.games.map((game)=>{
-            return (
-                <div>{game.id}</div>
+            return(
+                <tr key={game.id}>
+                    <td data-label="Team 1">
+                        <div className="team-row">
+                            {game.team_1.team_name}
+                            <img className="team-row--logo" src={game.team_1.team_logo} alt={`${game.team_1.team_logo} Logo`}></img>
+                        </div>
+                    </td>
+                    <td data-label="Team 2">
+                        <div className="team-row">
+                            {game.team_2.team_name}
+                            <img className="team-row--logo" src={game.team_2.team_logo} alt={`${game.team_2.team_logo} Logo`}></img>
+                        </div>
+                    </td>
+                    <td data-label="Date">
+                        {game.date}
+                    </td>
+                    <td data-label="Winner">
+                        {game.winner}
+                    </td>
+                </tr>
             )
         })
     }
@@ -38,7 +57,17 @@ class UserProfile extends Component{
                         {this.renderPickedTeams()}
                     </div>  
                     <h3>Your Games</h3>
-                        {this.renderGamesTeams()}
+                    <table className="ui celled table">
+                        <thead>
+                            <tr>
+                                <th>Team 1</th>
+                                <th>Team 2</th>
+                                <th>Date</th>
+                                <th>Winner</th>
+                            </tr>
+                            {this.renderUserGamesList()}
+                        </thead>
+                    </table>
                 </div>
             );
         }
@@ -47,6 +76,7 @@ class UserProfile extends Component{
     render(){
         return (
             <div>{this.renderUserProfile()}</div>
+            
         )
     }
 }

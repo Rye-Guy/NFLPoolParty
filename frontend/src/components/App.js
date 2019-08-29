@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Home from './Home';
 import Navbar from './Navbar';
-import UserPicks from './UserPicks';
-import UserProfile from './UserProfile';
+import AuthenticatedRoutes from './AuthenticatedRoutes';
 import {  BrowserRouter, Route } from 'react-router-dom';
 
 class App extends Component{ 
@@ -13,14 +12,12 @@ class App extends Component{
         <Navbar></Navbar>
          <div className='ui container'>
           <Route component={Home} path='/' exact></Route>
-          <Route component={UserPicks} path='/picks' exact></Route>
-          <Route component={UserProfile} path='/user-profile' exact></Route>
+          <AuthenticatedRoutes></AuthenticatedRoutes>
         </div>
         </BrowserRouter>
       </div>
     )
   }
 }
-
 
 export default App;

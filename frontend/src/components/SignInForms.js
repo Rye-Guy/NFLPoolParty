@@ -26,7 +26,7 @@ class SignInForms extends Component{
             
             <div className={className}>
                 <label htmlFor={formProps.input.name}>{formProps.label}</label>
-                <input {...formProps.input} autoComplete='off' />
+                <input {...formProps.input} type={formProps.type} autoComplete='off' />
                     
                 {this.sendErrorMessage(formProps.meta.touched, formProps.meta.error)}
             </div>    

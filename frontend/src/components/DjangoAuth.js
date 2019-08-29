@@ -11,8 +11,6 @@ class DjangoAuth extends Component{
     renderAuthButton(){
         if(this.props.token){
             return <button onClick={()=>this.onSignOutClick()} className='ui red button'>Sign Out</button>
-        }else{
-            return null
         }
     }
 
@@ -23,9 +21,7 @@ class DjangoAuth extends Component{
 
 const mapStateToProps = (state) =>{
     return {
-            isSignedIn: state.authReducer.isSignedIn,
             token: state.authReducer.hasToken,
-            resData: state.authReducer.resData
     }
 }
 
