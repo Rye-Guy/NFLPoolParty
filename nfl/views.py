@@ -1,4 +1,5 @@
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.contrib.auth.models import User
 from .models import NFLGame, UserPicks, UserMadePick, NFLTeam
 from .serializers import GamesSerializer, UserPicksSerializer, DjangoUsersSerializer, DjangoUserWithTokenSerializer
@@ -6,6 +7,9 @@ from rest_framework import routers, viewsets, permissions, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+def index(request):
+    return render(request, 'build/index.html')
 
 @api_view(['GET'])    
 def current_user(request):
