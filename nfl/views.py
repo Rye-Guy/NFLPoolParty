@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 def index(request):
-    return render(request, 'build/index.html')
+    return render(request, 'index.html')
 
 @api_view(['GET'])    
 def current_user(request):
