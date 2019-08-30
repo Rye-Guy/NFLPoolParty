@@ -26,7 +26,7 @@ SECRET_KEY = 'vby+d9+8nsjt+$74xb#7dh5fe!)ida+-i3jil0ls17g0sq799j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://nfl.mediaclassified.ca', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['165.22.230.149' ,'http://nfl.mediaclassified.ca', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -143,3 +143,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+	os.path.join(BASE_DIR, 'frontend', 'build')
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
