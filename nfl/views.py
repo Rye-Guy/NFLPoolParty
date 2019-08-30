@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
-from .models import NFLGame, UserPicks
+from .models import NFLGame, UserPicks, UserMadePick, NFLTeam
 from .serializers import GamesSerializer, UserPicksSerializer, DjangoUsersSerializer, DjangoUserWithTokenSerializer
 from rest_framework import routers, viewsets, permissions, status
 from rest_framework.decorators import api_view
@@ -46,6 +46,14 @@ class CurrentUserPicksViewSet(APIView):
         user_picks_qs.games.add(request.data['game'])
         user_picks_qs.teams.add(request.data['team'])
         user_picks_qs.save()
+        team_qs = NFLTeam.objects.get(id=request.data['team'])
+        user_made_pick_qs = UserMadePick.objects.create(
+            user=request.user,
+            team=team_qs,
+            week=request.data['week']
+        )
+        user_made_pick_qs.save()
+
         return Response(serializer.data)
 
 

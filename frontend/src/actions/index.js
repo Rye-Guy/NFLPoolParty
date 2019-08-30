@@ -18,7 +18,7 @@ export const signIn = (formData) => async (dispatch) => {
 
     dispatch({
         type: SIGN_IN,
-        payload: response
+        payload: response.data
     })
 }
 
@@ -69,6 +69,7 @@ export const fetchGames = () => async (dispatch) =>{
     })
 }
 
+
 export const selectPick = (gameObj, selectedTeamObj, losingTeamObj) => {
     return {
         type: SELECT_PICK,
@@ -76,13 +77,14 @@ export const selectPick = (gameObj, selectedTeamObj, losingTeamObj) => {
     }
 }
 
-export const patchUserPick = (gameId, teamId) => async (dispatch) => {
+export const patchUserPick = (gameId, teamId, weekInt) => async (dispatch) => {
     const response = await axios({
         method: 'PATCH',
         url: `http://localhost:8888/nfl/current-user-picks/`,
         data: {
             game: gameId,
-            team: teamId
+            team: teamId,
+            week: weekInt
         },
         headers: {
             Authorization: `JWT ${localStorage.getItem('token')}`

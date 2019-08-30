@@ -3,10 +3,8 @@ from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.models import User
 from .models import NFLGame, UserPicks, NFLTeam
 
-
-        
 class GamesSerializer(serializers.ModelSerializer):
-    
+        
     class Meta:
         model = NFLGame
         depth = 1

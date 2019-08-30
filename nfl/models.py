@@ -18,7 +18,13 @@ class UserPicks(models.Model):
     user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True)
     games = models.ManyToManyField('NFLGame', blank=True)
     teams = models.ManyToManyField('NFLTeam', blank=True)
-    points_awarded = models.IntegerField(blank=True, null=True)
+    points_awarded = models.IntegerField(default=0)
+
+class UserMadePick(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    team = models.ForeignKey('NFLTeam', on_delete=models.SET_NULL, null=True)
+    week = models.IntegerField()
+    been_checked = models.BooleanField()
     
 class NFLTeam(models.Model):
     

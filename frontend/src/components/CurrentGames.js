@@ -1,13 +1,26 @@
+
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchGames} from '../actions' 
 
 class CurrentGames extends Component{
-    componentDidMount(){
-        this.props.fetchGames()
+
+    renderWinningTeam = (game) =>{
+        if(game.winner === null){
+            return(
+                <div>TBD</div>
+            )
+        }else{
+            return(
+                <div className="team-row">
+                    {game.winner.team_name}
+                    <img className="team-row--logo" src={game.winner.team_logo} alt={`${game.winner.team_logo} Logo`}></img>
+                </div>
+            )
+        }
     }
 
-    renderGamesList(){
+    renderGamesList = () =>{
         return this.props.games.map((game)=>{
             return(
                 <tr key={game.id}>
@@ -27,13 +40,12 @@ class CurrentGames extends Component{
                         {game.date}
                     </td>
                     <td data-label="Winner">
-                        {game.winner}
+                        {this.renderWinningTeam(game)}
                     </td>
                 </tr>
             )
         })
     }
-
 
     render(){
         return(

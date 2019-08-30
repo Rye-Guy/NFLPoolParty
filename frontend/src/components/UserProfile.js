@@ -17,6 +17,22 @@ class UserProfile extends Component{
         });
     }
 
+    renderWinningTeam = (game) =>{
+        if(game.winner === null){
+            return(
+                <div>TBD</div>
+            )
+        }else{
+            return(
+                <div className="team-row">
+                    {game.winner.team_name}
+                    <img className="team-row--logo" src={game.winner.team_logo} alt={`${game.winner.team_logo} Logo`}></img>
+                </div>
+            )
+        }
+    }
+
+
     renderUserGamesList = () =>{
         return this.props.currentUser.games.map((game)=>{
             return(
@@ -37,7 +53,7 @@ class UserProfile extends Component{
                         {game.date}
                     </td>
                     <td data-label="Winner">
-                        {game.winner}
+                         {this.renderWinningTeam(game)}
                     </td>
                 </tr>
             )

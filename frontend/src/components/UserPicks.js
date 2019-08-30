@@ -8,8 +8,8 @@ class UserPicks extends Component{
         this.props.selectPick(game, pickedTeamId, teamToLose)
     }
 
-    patchUserPick = (gameId, pickedTeamId) =>{
-        this.props.patchUserPick(gameId, pickedTeamId)
+    patchUserPick = (gameId, pickedTeamId, weekInt) =>{
+        this.props.patchUserPick(gameId, pickedTeamId, weekInt)
         this.props.fetchUserProfile()
         
     }
@@ -69,7 +69,7 @@ class UserPicks extends Component{
                         {`You have selected ${this.props.currentPick[1].team_name} to win against ${this.props.currentPick[2].team_name} on ${this.props.currentPick[0].date}`}
                     </div>
                 <div class="inline">
-                    <div onClick={()=>{this.patchUserPick(this.props.currentPick[0].id, this.props.currentPick[1].id)}} class="ui button">Submit Pick</div>
+                    <div onClick={()=>{this.patchUserPick(this.props.currentPick[0].id, this.props.currentPick[1].id, this.props.currentPick[0].week)}} class="ui button">Submit Pick</div>
                 </div>
                 </div>
             );

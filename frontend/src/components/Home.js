@@ -29,7 +29,6 @@ class Home extends Component{
 const mapStateToProps = (state) =>{
     return {
       token: state.authReducer.hasToken,
-      user: state.authReducer.userInfo
     }
 }
 
