@@ -8,6 +8,10 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+def app_redirect(request):
+    return HttpResponseRedirect("/")
+
+
 def index(request):
     return render(request, 'build/index.html')
 
@@ -51,12 +55,11 @@ class CurrentUserPicksViewSet(APIView):
         user_picks_qs.teams.add(request.data['team'])
         user_picks_qs.save()
         team_qs = NFLTeam.objects.get(id=request.data['team'])
-        user_made_pick_qs = UserMadePick.objects.create(
+        UserMadePick.objects.create(
             user=request.user,
             team=team_qs,
             week=request.data['week']
-        )
-        user_made_pick_qs.save()
+        ).save()
 
         return Response(serializer.data)
 

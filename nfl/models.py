@@ -5,7 +5,7 @@ class NFLGame(models.Model):
     
     team_1 = models.ForeignKey('NFLTeam', related_name="HomeTeam", on_delete=models.SET_NULL, null=True)
     team_2 = models.ForeignKey('NFLTeam', related_name="AwayTeam",  on_delete=models.SET_NULL, null=True)
-    winner = models.ForeignKey('NFLTeam', related_name="WinningTeam", on_delete=models.SET_NULL, null=True)
+    winner = models.ForeignKey('NFLTeam', related_name="WinningTeam", on_delete=models.SET_NULL, null=True, blank=True)
     date = models.DateField(auto_now=False, auto_now_add=False)
     week = models.IntegerField(default=0)
 
@@ -24,7 +24,7 @@ class UserMadePick(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     team = models.ForeignKey('NFLTeam', on_delete=models.SET_NULL, null=True)
     week = models.IntegerField()
-    been_checked = models.BooleanField()
+    been_checked = models.BooleanField(default=False)
     
 class NFLTeam(models.Model):
     

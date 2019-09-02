@@ -17,12 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework_jwt.views import obtain_jwt_token
 from django.views.generic import TemplateView
-from nfl.views import index
+from nfl.views import index, app_redirect
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('token-auth/', obtain_jwt_token),
     path('nfl/', include('nfl.urls')),
-    path('', index, name="index")
+    path('', index, name="index"),
+    path('picks/', app_redirect),
+    path('user-picks/', app_redirect)
 ]
 

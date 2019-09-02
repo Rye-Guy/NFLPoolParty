@@ -7,12 +7,12 @@ import {fetchGames, fetchUserProfile} from '../actions'
 
 class AuthenticatedRoutes extends Component{
     
-    fetchGamesAndUserProfile(){
-        this.props.fetchGames()
-        this.props.fetchUserProfile()
+    fetchGamesAndUserProfile = ()=>{
+        this.props.dispatch(fetchGames())
+        this.props.dispatch(fetchUserProfile())
     }
 
-    renderRoutesOrRedirect(){
+    renderRoutesOrRedirect = ()=>{
         if(this.props.token){
             return(
                 <div>
@@ -44,4 +44,4 @@ const mapStateToProps = (state)=>{
     }
 }
 
-export default connect(mapStateToProps, {fetchUserProfile, fetchGames})(AuthenticatedRoutes)
+export default connect(mapStateToProps, )(AuthenticatedRoutes)
