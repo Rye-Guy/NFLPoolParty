@@ -13,7 +13,7 @@ def app_redirect(request):
 
 
 def index(request):
-    return render(request, 'build/index.html')
+    return render(request, 'index.html')
 
 @api_view(['GET'])    
 def current_user(request):
