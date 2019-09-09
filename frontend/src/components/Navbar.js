@@ -13,7 +13,7 @@ class Navbar extends Component{
                     <Link to="/" className="item">Home</Link>
                     <Link to="/picks" className="item">Picks</Link>
                     <Link to="/user-profile" className="item">User Profile</Link>
-                    <a href="/" className="item">Standings</a>
+                    {/* <a href="/" className="item">Standings</a> */}
                     <div className="right menu">
                         <DjangoAuth></DjangoAuth>
                     </div>

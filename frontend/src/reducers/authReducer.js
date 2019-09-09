@@ -3,7 +3,7 @@ import {SIGN_IN, SIGN_OUT, SIGN_UP} from '../actions/types'
 
 
 const INITIAL_STATE ={
-    hasToken: localStorage.hasOwnProperty('token'),
+    hasToken: localStorage.clear(),
     userInfo: null,
     error: null,
 }
@@ -18,5 +18,5 @@ export default (state = INITIAL_STATE, action) =>{
             return {...state, hasToken: localStorage.hasOwnProperty('token'), response: action.payload};
         default:
             return state
-    }
+    };
 };

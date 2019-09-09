@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {SIGN_IN, SIGN_OUT, SIGN_UP, FETCH_GAMES, SELECT_PICK, PATCH_USER_PICK, FETCH_USER_PROFILE} from './types'
-
+const CURRENT_WEEK = 2
 export const signIn = (formData) => async (dispatch) => {
     const response = await axios({
         method: 'post',
@@ -53,7 +53,7 @@ export const signOut = () => {
 export const fetchGames = () => async (dispatch) =>{
     const response = await axios({
         method: 'get',
-        url: `http://localhost:8888/nfl/games/1`,
+        url: `http://localhost:8888/nfl/games/${CURRENT_WEEK}`,
         headers: {
             Authorization: `JWT ${localStorage.getItem('token')}`
         },
