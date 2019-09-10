@@ -8,7 +8,7 @@ class SignInForms extends Component{
     componentDidMount(){
         localStorage.clear()
     }
-    
+
     componentDidUpdate(){
         console.log(this.props)
         
@@ -44,13 +44,11 @@ class SignInForms extends Component{
 
     renderResponseError = () => {
         if(this.props.response){
-            if(this.props.response.config.url === "http://localhost:8888/token-auth/" && this.props.response.status === 400){
                  return (
                     <div style={{'display':'block'}} className='ui error message'>
                         <div className='header'>We could not log you in with credentials provided</div>
                     </div>
                 )
-            }
         }
     }
 
