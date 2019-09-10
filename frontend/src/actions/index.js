@@ -27,8 +27,8 @@ export const signUp = (formData) => async (dispatch) =>{
         method: 'post',
         url: 'http://nfl.mediaclassified.ca/nfl/users/', 
         data: {
-            "username": formData.createusername,
-            "password": formData.createpassword,
+            "username": formData.username,
+            "password": formData.password,
         },})
         .then((res)=>{
             localStorage.setItem('token', res.data.token);
