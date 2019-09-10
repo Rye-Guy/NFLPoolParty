@@ -27,8 +27,13 @@ class UserPicks extends Component{
     }
 
     userHasPickedCurrentWeek = () =>{
+        console.log(this.props.currentUser)
         if(this.props.currentUser){        
-            return this.props.currentUser.games.find(obj => obj.week === CURRENT_WEEK)
+            if(this.props.currentUser.games.find(obj => obj.week === CURRENT_WEEK)){
+                return true
+            }else{
+                return false
+            }
         }
     }
     

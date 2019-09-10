@@ -14,7 +14,7 @@ class CurrentGames extends Component{
             return(
                 <div className="team-row">
                     {game.winner.team_name}
-                    <img className="team-row--logo" src={game.winner.team_logo} alt={`${game.winner.team_logo} Logo`}></img>
+                    <img className="team-row--logo" src={game.winner.team_logo} alt={`${game.winner.team_name} Logo`}></img>
                 </div>
             )
         }
@@ -27,13 +27,13 @@ class CurrentGames extends Component{
                     <td data-label="Team 1">
                         <div className="team-row">
                             {game.team_1.team_name}
-                            <img className="team-row--logo" src={game.team_1.team_logo} alt={`${game.team_1.team_logo} Logo`}></img>
+                            <img className="team-row--logo" src={game.team_1.team_logo} alt={`${game.team_1.team_name} Logo`}></img>
                         </div>
                     </td>
                     <td data-label="Team 2">
                         <div className="team-row">
                             {game.team_2.team_name}
-                            <img className="team-row--logo" src={game.team_2.team_logo} alt={`${game.team_2.team_logo} Logo`}></img>
+                            <img className="team-row--logo" src={game.team_2.team_logo} alt={`${game.team_2.team_name} Logo`}></img>
                         </div>
                     </td>
                     <td data-label="Date">

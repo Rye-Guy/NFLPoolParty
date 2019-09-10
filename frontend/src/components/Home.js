@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import SignInForms from './SignInForms'
+import SignInForm from './SignInForm';
 import CurrentGames from './CurrentGames';
 class Home extends Component{
     
@@ -13,7 +13,7 @@ class Home extends Component{
             )
         }else{
             return(
-                <SignInForms></SignInForms>
+                <SignInForm></SignInForm>
             )
         }
     }

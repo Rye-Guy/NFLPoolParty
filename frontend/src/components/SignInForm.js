@@ -34,13 +34,7 @@ class SignInForms extends Component{
     }
     
     onSubmit = (formData) => {
-        if(formData.createusername){
-            this.props.signUp(formData)
-        }else if(formData.username){
-            this.props.signIn(formData)
-        }
-        console.log(formData)
-        
+        this.props.signIn(formData)
     }
 
     renderResponseError = () => {
@@ -79,15 +73,7 @@ class SignInForms extends Component{
                         </form>
                         {this.renderResponseError()}
                     </div>
-                    <div className="column">
-                        <h2>Sign Up</h2>
-                        <form onSubmit={this.props.handleSubmit(this.onSubmit)} className='ui form'>
-                            <Field name='createusername' type='text' component={this.renderInput} label='Enter Username'></Field>
-                            <Field name='createpassword' type="password" component={this.renderInput} label='Enter Password'></Field>
-                            <button className='ui button primary'>Submit</button>
-                        </form>
-                        {this.renderSignUpError()}
-                    </div>
+                    
                 </div>
         )
     }
@@ -104,14 +90,6 @@ const validate = (formData) => {
         }
         if(!formData.password){
             error.password = 'Need to input a password'
-        }
-    }
-    if(formData.createusername || formData.createpassword){
-        if(!formData.createusername){
-            error.createusername = 'Need to input a username'
-        }
-        if(!formData.createpassword){
-            error.createpassword = 'Need to input a password'
         }
     }
     return error

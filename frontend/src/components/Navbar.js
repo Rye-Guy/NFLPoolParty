@@ -22,6 +22,8 @@ class Navbar extends Component{
         }else{
             return(
                 <div className="ui secondary pointing menu">
+                    <Link to="/" className="item">Login</Link>
+                    <Link to="/sign-up"  className="item">Sign Up</Link>
                     <div className="right menu">
                         <DjangoAuth></DjangoAuth>
                     </div>
