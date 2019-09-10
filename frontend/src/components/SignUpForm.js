@@ -17,14 +17,12 @@ class SignUpForm extends Component{
     }
     
     renderInput = (formProps) => {
-        console.log(formProps)
         const className = `field ${formProps.meta.error && formProps.meta.touched ? 'error':''}`
         return(
             
             <div className={className}>
                 <label htmlFor={formProps.input.name}>{formProps.label}</label>
                 <input {...formProps.input} type={formProps.type} autoComplete='off' />
-                    
                 {this.sendErrorMessage(formProps.meta.touched, formProps.meta.error)}
             </div>    
         )
@@ -37,16 +35,19 @@ class SignUpForm extends Component{
                     <div className='header'>We could not create your user! (Sorry)</div>
                     <div className='content'>There is probably a user with this username already</div>
                 </div>
-                    )
+            )
         } 
     }
+
+    comparePasswords = ({password, confirmpassword}) =>{
+        console.log(password, confirmpassword)
+    }
+
     onSubmit = (formData) => {
         this.props.signUp(formData)
-        this.renderSignUpOrRedirect()
     }
 
     renderSignUpOrRedirect = () => {
-        console.log(this.props.token)
         if(this.props.token){
            return <Redirect to='/'></Redirect>
         }else{
@@ -56,6 +57,7 @@ class SignUpForm extends Component{
                         <form onSubmit={this.props.handleSubmit(this.onSubmit)} className='ui form'>
                             <Field name='username' type='text' component={this.renderInput} label='Enter Username'></Field>
                             <Field name='password' type="password" component={this.renderInput} label='Enter Password'></Field>
+                            <Field name='confirmpassword' type="password" component={this.renderInput} label='Confirm password'></Field>
                             <button className='ui button primary'>Submit</button>
                         </form>
                         {this.renderSignUpError()}
@@ -85,6 +87,10 @@ const validate = (formData) => {
         if(!formData.password){
             error.password = 'Need to input a password'
         }
+    }
+
+    if(formData.password !== formData.confirmpassword){
+        error.password = 'passwords do not match'
     }
     return error
 }

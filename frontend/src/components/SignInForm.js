@@ -48,18 +48,6 @@ class SignInForms extends Component{
             }
         }
     }
-    renderSignUpError = () =>{
-        if(this.props.response){
-            if(this.props.response.config.url === "http://localhost:8888/nfl/users/" && this.props.response.status === 400){
-                    return (
-                        <div style={{'display':'block'}} className='ui error message'>
-                            <div className='header'>We could not create your user! (Sorry)</div>
-                            <div className='content'>There is probably a user with this username already</div>
-                        </div>
-                    )
-            }
-        }
-    }
 
     render(){
         return(
