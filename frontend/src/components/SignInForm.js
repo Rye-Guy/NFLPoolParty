@@ -5,8 +5,13 @@ import { signIn, signUp } from '../actions'
 
 class SignInForms extends Component{
 
+    componentDidMount(){
+        localStorage.clear()
+    }
+    
     componentDidUpdate(){
         console.log(this.props)
+        
     }
     
     sendErrorMessage = (touched, errorMessage)=>{
