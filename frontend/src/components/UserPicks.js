@@ -69,7 +69,7 @@ class UserPicks extends Component{
             return(
                 <div className="ui placeholder segment">
                     <div className="ui header">
-                        You are have already selected a team to win this week. 
+                        You have already selected a team to win this week. 
                     </div>
                 </div>
             )
@@ -78,7 +78,7 @@ class UserPicks extends Component{
                 return(
                     <div className="ui placeholder segment">
                         <div className="ui header">
-                            The team you have selected has already been picked
+                            The team you have selected has already been picked.
                         </div>
                     </div>
                 )
