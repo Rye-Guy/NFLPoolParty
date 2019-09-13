@@ -15,13 +15,14 @@ class UserPicksSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserPicks
         depth = 2
-        fields = ['user', 'games', 'teams', 'points_awarded']
+        fields = '__all__'
 
 class DjangoUsersSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username']
+        fields = '__all__'
+        exclude = ('password',)
 
 class DjangoUserWithTokenSerializer(serializers.ModelSerializer):
 

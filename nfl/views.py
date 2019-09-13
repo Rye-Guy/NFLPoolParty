@@ -45,6 +45,7 @@ class CurrentUserPicksViewSet(APIView):
 
     def get(self, request, format=None):
         user_picks_qs = UserPicks.objects.get(user=request.user)
+        user_picks_qs.user.password = 'nice try :P'
         serializer = UserPicksSerializer(user_picks_qs) 
         return Response(serializer.data)
 
@@ -63,7 +64,16 @@ class CurrentUserPicksViewSet(APIView):
 
         return Response(serializer.data)
 
+class UserStandings(viewsets.ViewSet):
+    
+    def list(self, request):
+        queryset = UserPicks.objects.all().order_by('-points_awarded')
+        
+        for obj in queryset: 
+            obj.user.password = 'nice try :P'
 
+        serializer = UserPicksSerializer(queryset, many=True)
+        return Response(serializer.data)
 
 class UserPicksViewSet(viewsets.ModelViewSet):
     queryset = UserPicks.objects.all()

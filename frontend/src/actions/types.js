@@ -5,3 +5,4 @@ export const FETCH_GAMES = "FETCH_GAMES";
 export const SELECT_PICK = "SELECT_PICK";
 export const PATCH_USER_PICK = "PATCH_USER_PICK";
 export const FETCH_USER_PROFILE = "FETCH_USER_PROFILE";
+export const FETCH_STANDINGS = "FETCH_STANDINGS";
