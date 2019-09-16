@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchUserProfile, selectPick, patchUserPick, } from '../actions'
-const CURRENT_WEEK = 2
+const CURRENT_WEEK = 3
 
 class UserPicks extends Component{
     componentDidMount(){
@@ -27,7 +27,6 @@ class UserPicks extends Component{
     }
 
     userHasPickedCurrentWeek = () =>{
-        console.log(this.props.currentUser)
         if(this.props.currentUser){        
             if(this.props.currentUser.games.find(obj => obj.week === CURRENT_WEEK)){
                 return true
