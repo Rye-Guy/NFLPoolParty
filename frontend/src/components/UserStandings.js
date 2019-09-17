@@ -6,7 +6,6 @@ class UserStandings extends Component{
     
     componentDidMount(){
         this.props.dispatch(fetchUserStandings())
-        console.log(this.props)
     }
 
     renderUserStandings = ()=>{

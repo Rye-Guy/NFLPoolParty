@@ -24,7 +24,7 @@ class UserMadePick(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     team = models.ForeignKey('NFLTeam', on_delete=models.SET_NULL, null=True)
     week = models.IntegerField()
-    been_checked = models.BooleanField()
+    been_checked = models.BooleanField(default=False)
     
 class NFLTeam(models.Model):
     

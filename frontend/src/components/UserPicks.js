@@ -10,13 +10,12 @@ class UserPicks extends Component{
     
     selectUserPick = (game, pickedTeamId, teamToLose) =>{
         this.props.selectPick(game, pickedTeamId, teamToLose)
-        
     }
 
     patchUserPick = (gameId, pickedTeamId, weekInt) =>{
         if(!this.userHasPickedCurrentTeam(pickedTeamId)){
-            this.props.fetchUserProfile()
             this.props.patchUserPick(gameId, pickedTeamId, weekInt)
+            this.props.fetchUserProfile()
         }
         
     }

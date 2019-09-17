@@ -37,10 +37,10 @@ class UserMadePickResource(resources.ModelResource):
 
     class Meta:
         model = UserMadePick
-        list_display = ['user', 'team', 'week']
 
 class UserMadePickAdmin(import_export_admin.ImportExportModelAdmin):
     resource_class = UserMadePickResource
+    list_display = ['user', 'team', 'week']
 
 
     
