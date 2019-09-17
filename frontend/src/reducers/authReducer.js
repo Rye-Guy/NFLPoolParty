@@ -3,7 +3,7 @@ import {SIGN_IN, SIGN_OUT, SIGN_UP} from '../actions/types'
 
 
 const INITIAL_STATE ={
-    hasToken: localStorage.hasOwnProperty('token') || localStorage.clear(),
+    hasToken: localStorage.removeItem('token'),
     userInfo: null,
     error: null,
 }
