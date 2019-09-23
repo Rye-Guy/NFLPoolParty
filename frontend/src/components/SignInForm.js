@@ -28,7 +28,6 @@ class SignInForms extends Component{
         console.log(formProps)
         const className = `field ${formProps.meta.error && formProps.meta.touched ? 'error':''}`
         return(
-            
             <div className={className}>
                 <label htmlFor={formProps.input.name}>{formProps.label}</label>
                 <input {...formProps.input} type={formProps.type} autoComplete='off' />

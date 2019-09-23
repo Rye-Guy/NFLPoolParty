@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchUserProfile, selectPick, patchUserPick, } from '../actions'
-const CURRENT_WEEK = 3
+const CURRENT_WEEK = 4
 
 class UserPicks extends Component{
     componentDidMount(){
@@ -34,6 +34,16 @@ class UserPicks extends Component{
             }
         }
     }
+
+    hasDatePassed = (date)=>{
+        const now = new Date()
+        const gameDate = new Date(date)
+        if(now >= gameDate){
+            return true
+        }else{
+            return false
+        }
+    }
     
     renderGamesWithPickOptions = () =>{
         return this.props.games.map((game)=>{
@@ -53,8 +63,8 @@ class UserPicks extends Component{
                 </div>
                 <div className="extra content">
                     <div className="ui two buttons">
-                        <div onClick={(this.userHasPickedCurrentWeek() || this.userHasPickedCurrentTeam(game.team_1.id)) ? ()=>{console.log('you already have a pick')} : ()=>{this.selectUserPick(game, game.team_1, game.team_2)}} className={(this.userHasPickedCurrentWeek() || this.userHasPickedCurrentTeam(game.team_1.id)) ? "ui basic gray button" : "ui basic green button" }>{game.team_1.team_name}</div>
-                        <div onClick={(this.userHasPickedCurrentWeek() || this.userHasPickedCurrentTeam(game.team_2.id)) ? ()=>{console.log('you already have a pick')} : ()=>{this.selectUserPick(game, game.team_2, game.team_1)}} className={(this.userHasPickedCurrentWeek() || this.userHasPickedCurrentTeam(game.team_2.id)) ? "ui basic gray button" : "ui basic blue button" }>{game.team_2.team_name}</div>
+                        <div onClick={(this.hasDatePassed(game.date) || this.userHasPickedCurrentWeek() || this.userHasPickedCurrentTeam(game.team_1.id)) ? ()=>{console.log('you already have a pick')} : ()=>{this.selectUserPick(game, game.team_1, game.team_2)}} className={(this.hasDatePassed(game.date) ||this.userHasPickedCurrentWeek() || this.userHasPickedCurrentTeam(game.team_1.id)) ? "ui basic gray button" : "ui basic green button" }>{game.team_1.team_name}</div>
+                        <div onClick={(this.hasDatePassed(game.date) ||this.userHasPickedCurrentWeek() || this.userHasPickedCurrentTeam(game.team_2.id)) ? ()=>{console.log('you already have a pick')} : ()=>{this.selectUserPick(game, game.team_2, game.team_1)}} className={(this.hasDatePassed(game.date) || this.userHasPickedCurrentWeek() || this.userHasPickedCurrentTeam(game.team_2.id)) ? "ui basic gray button" : "ui basic blue button" }>{game.team_2.team_name}</div>
                     </div>
                 </div>
             </div>
