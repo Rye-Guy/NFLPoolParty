@@ -1,10 +1,10 @@
 import axios from 'axios';
 import {SIGN_IN, SIGN_OUT, SIGN_UP, FETCH_GAMES, SELECT_PICK, PATCH_USER_PICK, FETCH_USER_PROFILE, FETCH_STANDINGS} from './types'
-const CURRENT_WEEK = 2
+const CURRENT_WEEK = 4
 export const signIn = (formData) => async (dispatch) => {
     const response = await axios({
         method: 'post',
-        url: 'http://localhost:8888/token-auth/',
+        url: 'http://nfl.mediaclassified.ca/token-auth/',
         data: {
             "username": formData.username,
             "password": formData.password
@@ -25,7 +25,7 @@ export const signIn = (formData) => async (dispatch) => {
 export const signUp = (formData) => async (dispatch) =>{
     const response = await axios({
         method: 'post',
-        url: 'http://localhost:8888/nfl/users/', 
+        url: 'http://nfl.mediaclassified.ca/nfl/users/', 
         data: {
             "username": formData.username,
             "password": formData.password,
@@ -52,7 +52,7 @@ export const signOut = () => {
 export const fetchGames = () => async (dispatch) =>{
     const response = await axios({
         method: 'get',
-        url: `http://localhost:8888/nfl/games/${CURRENT_WEEK}`,
+        url: `http://nfl.mediaclassified.ca/nfl/games/${CURRENT_WEEK}`,
         headers: {
             Authorization: `JWT ${localStorage.getItem('token')}`
         },
@@ -79,7 +79,7 @@ export const selectPick = (gameObj, selectedTeamObj, losingTeamObj) => {
 export const patchUserPick = (gameId, teamId, weekInt) => async (dispatch) => {
     const response = await axios({
         method: 'PATCH',
-        url: `http://localhost:8888/nfl/current-user-picks/`,
+        url: `http://nfl.mediaclassified.ca/nfl/current-user-picks/`,
         data: {
             game: gameId,
             team: teamId,
@@ -103,7 +103,7 @@ export const patchUserPick = (gameId, teamId, weekInt) => async (dispatch) => {
 export const fetchUserProfile = () => async (dispatch) =>{
     const response = await axios({
         method: 'GET',
-        url: `http://localhost:8888/nfl/current-user-picks/`,
+        url: `http://nfl.mediaclassified.ca/nfl/current-user-picks/`,
         headers: {
             Authorization: `JWT ${localStorage.getItem('token')}`
         }
@@ -122,7 +122,7 @@ export const fetchUserProfile = () => async (dispatch) =>{
 export const fetchUserStandings = () => async (dispatch)=>{
     const response = await axios({
         method: 'GET',
-        url: `http://localhost:8888/nfl/standings`,
+        url: `http://nfl.mediaclassified.ca/nfl/standings`,
         headers: {
             Authorization: `JWT ${localStorage.getItem('token')}`
         }
