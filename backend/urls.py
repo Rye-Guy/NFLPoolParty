@@ -27,7 +27,8 @@ urlpatterns = [
     path('', index, name="index"),
     path('picks/', app_redirect),
     path('user-picks/', app_redirect),
-    path('sign-up', app_redirect),
+    path('sign-up/', app_redirect),
+    path('standings/', app_redirect),
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type="text/plain"), name="robots_file")
 ]
 
