@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchUserProfile, selectPick, patchUserPick, } from '../actions'
-const CURRENT_WEEK = 4
+const CURRENT_WEEK = 5
 
 class UserPicks extends Component{
     componentDidMount(){
