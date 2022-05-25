@@ -12,7 +12,7 @@ jdcal==1.4.1
 Markdown==3.1.1
 odfpy==1.4.0
 openpyxl==2.6.3
-PyJWT==1.7.1
+PyJWT==2.4.0
 pytz==2019.2
 PyYAML==5.1.2
 sqlparse==0.3.0
